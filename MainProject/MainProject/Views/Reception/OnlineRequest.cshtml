@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "OnlineRequest";
+    Layout = "~/Views/Shared/ReceptionCommon.cshtml";
+}
+@using MainProject.Models;
+@using System.Data;
+
+<link href="~/Content/css/style.css" rel="stylesheet" />
+<div class="col-sm-12">
+    <div class="row">
+        
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+             <section id="portfolio" >
+                <div class="container">
+
+                    <header class="section-header">
+                    <h3>Manage Online Request</h3>
+                    </header>
+                    <table border="1" style="width:100%;" cellpadding="10">
+                        <tr>
+                            <th>Request ID</th><th>Name</th><th>Mobile Number</th><th>Email ID</th><th>Number of Room</th><th>Status</th><th>Confirm</th>
+                        </tr>
+                        @{
+                            DBManager Dbm = new DBManager();
+                            string cmd = "Select *from OnlineRequest order by User_ID desc";
+                            DataTable dt = Dbm.ExecuteSelect(cmd);
+                            foreach(DataRow dr in dt.Rows)
+                            {
+                                <tr>
+                                    <td>@dr[0]</td><td>@dr[1]</td><td>@dr[2]</td><td>@dr[3]</td><td>@dr[6]</td>
+                                    @{if(dr[8].ToString()=="True")
+                                      {
+                                    <td><span style="color:green;font-weight:bold">Confirmed</span></td>
+                                     <td>Confirm</td>
+                                      }
+                                    else
+                                    {
+                                          <td><span style="color:orange">Pending</span></td>
+                                        <td><a style="color:blue" href="/Reception/NewGuest?idd=@dr[0]&&name=@dr[1]&&number=@dr[2]&&email=@dr[3]">Confirm</a></td>
+                                    }
+                                    }
+                                </tr>
+                        }
+                        }
+                    </table>
+
+                  
+        
+
+      </div>
+    </section>
+        </div>
+        <div class="col-sm-1"></div>
+
+    </div>
+</div>
+
+

@@ -1,0 +1,80 @@
+﻿ @{
+    ViewBag.Title = "AddRaeception";
+    Layout = "~/Views/Shared/AdminCommon.cshtml";
+}
+<link href="~/Content/css/style.css" rel="stylesheet" />
+<section id="portfolio" class="section-bg" style="background: linear-gradient(rgba(255,215,0,.6),rgba(0, 122, 204, 0.6),rgba(255,215,0,.6)),url('/Content/img/intro-carousel/Rece.png') ;background-size:cover;min-height:600px;background-attachment:fixed;">
+  \
+                <div class="container">
+                    @if(ViewBag.msg!=null)
+                        {
+                            <span style="color:red;">@ViewBag.msg</span>
+                        }
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <img src="~/Content/img/intro-carousel/Reception.png" class="img-fluid"/>
+
+                        </div>
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-5">
+                           <div class="row">
+                               <div class="col-sm-10">
+                                    <header class="section-header">
+                        <h3 class="section-title">Add Receptionist</h3>
+                    </header>
+                        @using (Html.BeginForm("AddReception", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                             
+                               
+                            @Html.TextBox("name",null,new{placeholder="Enter Receptionist Name", @class="form-control"})
+                               
+                                <span id="lblError1" style="color: red;"></span>
+                                <br />
+                            @Html.TextBox("fname",null,new{placeholder="Enter Receptionist Father Name", @class="form-control"})
+                               
+                                <span id="lblError2" style="color: red;"></span>
+                                <br />
+                       @*     @Html.TextBox("name",null,new{placeholder="Enter Receptioninst Name", @class="form-control"})  *@
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+ 
+                            <label class="btn btn-secondary">
+                                @Html.RadioButton("gender","Male") Male
+                            </label>
+                            <label class="btn btn-secondary">
+                                 @Html.RadioButton("gender","Female") Female
+                            </label>
+                        </div>
+                             
+                           
+                                <span id="lblError3" style="color: red;"></span>
+                                <br />
+                            <br />
+                            @Html.TextBox("email",null,new{placeholder="Enter Receptionist Email Id", @class="form-control"})
+                               
+                                <span id="lblError4" style="color: red;"></span>
+                                <br />
+                            @Html.TextBox("number",null,new{placeholder="Enter Receptionist Mobile Number", @class="form-control"})
+                               
+                                <span id="lblError5" style="color: red;"></span>
+                                <br />
+                            <input type="file" name="file" class="form-control" />
+                            <span id="lblError5" style="color: red;"></span>
+                                <br />
+                              @Html.TextArea("addr",null,3,10,new{placeholder="Enter Receptionist Address", @class="form-control"}) 
+                                <span id="lblError6" style="color: red;"></span>
+                                
+                                <br />
+                       
+                          
+                                <center><input type="submit" id="btnUpload" class="btn-success" value="Upload" /></center>
+                        }
+                        
+                       
+                               </div>
+                               <div class="col-sm-2"></div>
+                           </div>
+                        </div>
+                    <div class="col-sm-1"></div>
+                    </div>
+                </div>
+            </section>

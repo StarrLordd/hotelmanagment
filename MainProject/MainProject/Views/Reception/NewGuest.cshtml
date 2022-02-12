@@ -1,0 +1,122 @@
+﻿@{
+    ViewBag.Title = "NewGuest";
+    Layout = "~/Views/Shared/ReceptionCommon.cshtml";
+}
+<link href="~/Content/css/style.css" rel="stylesheet" />
+<div class="col-sm-12">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <section id="contact" class="section-bg wow fadeInUp">
+      <div class="container">
+           <div class="section-header">
+          <h3>New Guest Detail</h3>
+          
+        </div>
+       
+
+       
+
+        <div class="form" id="enq">
+          
+         
+        @using(Html.BeginForm("NewGuest","Reception",new{role="form", @class="contactForm"})){
+           
+            <input type="hidden" value="@ViewBag.idd" name="onid" />
+                        
+                            
+                            string name=ViewBag.name;
+                            string number=ViewBag.number;
+                            string email=ViewBag.email;
+                        
+            <div class="form-group">
+                @Html.TextBox("name",name,new{placeholder="Enter Guest Name", @class="form-control"})
+             <div class="validation"></div>
+            </div>
+            <div class="form-group">
+                @Html.TextBox("email",email,new{placeholder="Enter Guest Email ID", @class="form-control"})
+             <div class="validation"></div>
+            </div>
+            <div class="form-group">
+                @Html.TextBox("number",number,new{placeholder="Enter Guest Number", @class="form-control"})
+             <div class="validation"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                  <select class="form-control" name="adults">
+                      <option value="">--Select Number of Adults--</option>
+                      @{
+                          for(int i=1;i<=10;i++)
+                          {
+                              <option>@i</option>
+                      }
+                      }
+                  </select>
+                <div class="validation"></div>
+              </div>
+              <div class="form-group col-md-6">
+                    <select class="form-control" name="child">
+                      <option value="">--Select Number of Children--</option>
+                      @{
+                          for(int i=1;i<=10;i++)
+                          {
+                              <option>@i</option>
+                      }
+                      }
+                  </select>
+                  <div class="validation"></div>
+              </div>
+            </div>
+             <div class="form-row">
+              <div class="form-group col-md-6">
+                  @Html.TextBox("cin",null,new{placeholder="Check in Time", @class="form-control",onfocus="(this.type='date')", onblur="(this.type='text')"})
+               
+                <div class="validation"></div>
+              </div>
+              <div class="form-group col-md-6">
+                  @Html.TextBox("cout",null,new{placeholder="Check Out Time", @class="form-control",onfocus="(this.type='date')", onblur="(this.type='text')"})
+              <div class="validation"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" name="addr" rows="5" data-rule="required" data-msg="Enter Guest Address Here" placeholder="Address"></textarea>
+              <div class="validation"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                 <select class="form-control" name="idtype">
+                <option value="">--Select Id--</option>
+                <option>Adhar Card</option>
+                <option>Voter ID</option>
+                <option>Drivring Lisence</option>
+                <option>Passport</option>
+                <option>Pan Card</option>
+                <option>Other</option>
+            </select>
+                <div class="validation"></div>
+              </div>
+              <div class="form-group col-md-6">
+                  @Html.TextBox("IDNumber",null,new{placeholder="Enter ID Number",@class="form-control"})
+                    <div class="validation"></div>
+              </div>
+            </div>
+            
+            <div class="text-center"><input type="submit" value="Next"></div>
+         
+        
+        }
+        @{
+            if(@ViewBag.msg!=null){
+                <span style="color:red;">@ViewBag.msg</span>
+            }
+        }
+        </div>
+
+      </div>
+    </section>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+</div>
+
+

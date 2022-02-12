@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "ManageEnquiry";
+    Layout = "~/Views/Shared/AdminCommon.cshtml";
+}
+@using MainProject.Models;
+@using System.Data;
+<script>
+    $(document).ready(function () {
+       // $(".rep").hide();
+        $(".replybutton").click(function () {
+            $(this).parents("tr").next().slideToggle("slow");
+           
+        });
+    });
+</script>
+@if(TempData["msg"]!=null)
+{
+    <script>
+        alert(@TempData["msg"]);
+    </script>
+}
+<link href="~/Content/css/style.css" rel="stylesheet" />
+  <section id="portfolio" class="section-bg" >
+                <div class="container">
+                    <header class="section-header">
+                        <h3 class="section-title">Manage Enquiry</h3>
+                    </header>
+                    <div class="row">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-8">
+                            <table border="1" width="100%">
+                                <tr align="center">
+                                    <th>Sn.</th><th>Name</th><th>Subject</th><th>Message</th><th>Status</th><th>Reply</th><th>Delete</th>
+                                </tr>
+                                
+                                @{
+                                    DBManager Dbm = new DBManager();
+                                    string cmd = "select *from Enquiry order by Enq_id Desc";
+                                    DataTable dt = Dbm.ExecuteSelect(cmd);
+                                    int x=1;
+                                    if(dt.Rows.Count<1)
+                                    {
+                                        <span style="color:red;">No Enquiry Found</span>
+                                    }
+                                    foreach(DataRow dr in dt.Rows)
+                                    {
+                                        <tr>
+                                        <td>@x</td>
+                                        <td>@dr[1]</td>
+                                        <td>@dr[3]</td>
+                                        <td>@dr[4]</td>
+                                        @{
+                                        if (dr[6].ToString() == "True")
+                                        {
+                                            <td>Replied</td>
+                                        }
+                                        else
+                                        {
+                                            <td>Not Replied</td>   
+                                        }
+                                        }
+                                        <td class="replybutton"><span style="color:blue;cursor:pointer">Reply</span></td>
+                                            <td><a style="color:blue" href="/Admin/DeleteEnq?id=@dr[0]">Delete</a></td>
+                                            </tr>
+                                        x++;
+                                        <tr class="rep" style="display:none;border:none;">
+                                            <form action="/Admin/ManageEnquiry?id=@dr[0]&&email=@dr[2]" method="post">
+                                            <td colspan="5"><input type="text" placeholder="Enter Your Message Here..." name="msg" class="form-control" /></td>
+                                            <td colspan="2"><input type="submit" class="btn-success" value="Reply" /></td>
+                                            </form>
+                                        </tr>
+                                    }
+                                }
+                            </table>
+                        </div>
+                        <div class="col-sm-2"></div>
+                    </div>
+                    
+                </div>
+            </section>

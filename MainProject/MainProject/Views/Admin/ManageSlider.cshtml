@@ -1,0 +1,148 @@
+﻿@{
+    ViewBag.Title = "ManageSlider";
+    Layout = "~/Views/Shared/AdminCommon.cshtml";
+}
+@using MainProject.Models;
+@using System.Data;
+<style>
+
+</style>
+<link href="~/Content/css/style.css" rel="stylesheet" />
+<script>
+    $("body").on("click", "#btnUpload", function () {
+        var allowedFiles = [".jpg", ".jpeg", ".png"];
+        var fileUpload = $("#fileUpload");
+        var txtbx = $("#room").val().trim();
+        var lblError = $("#lblError");
+        $("#lblError").html("");
+        $(".fileUpload").css("border-color", "#F0F0F0");
+        var file_size = $('#fileUpload')[0].files[0].size;
+        var regex = new RegExp("([a-zA-Z0-9\s_\\.\-:])+(" + allowedFiles.join('|') + ")$");
+        if (!regex.test(fileUpload.val().toLowerCase())) {
+            lblError.html("Please upload files having extensions: <b>" + allowedFiles.join(', ') + "</b> only.");
+           // alert(txtbx)
+            return false;
+        }
+        else if (txtbx == "") {
+            lblError.html("Please Enter Room TItle.");
+            return false;
+        }
+        else if (file_size > 512000) {
+            $("#lblError").html("File size is greater than .5MB");
+            $(".fileUpload").css("border-color", "#FF0000");
+
+            return false;
+        }
+
+       
+
+        lblError.html('');
+        return true;
+
+
+        
+        
+        return true;
+    });
+</script>
+<div class="col-sm-12">
+    <div class="row">
+        <div class="col-sm-5">
+             <section id="portfolio" class="section-bg" >
+                <div class="container">
+                    <header class="section-header">
+                        <h3 class="section-title">Upload Slider Image</h3>
+                    </header>
+                    <div class="row">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-10">
+                        @using (Html.BeginForm("ManageSlider", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                             <select name="id" class="form-control">
+                                 <option>--Select Indexing--</option>
+                                 @{
+                                     DBManager Db=new DBManager();
+                                     string cm="select sliderid from ManageSlider order by sliderid desc";
+                                     DataTable d=Db.ExecuteSelect(cm);
+                                     int y=1;
+                                     foreach(DataRow dr in d.Rows)
+                                     {
+                                         <option value="@dr["SliderId"]">@y</option>
+                                         y++;
+                                 }
+                                 }
+                                 }
+                             </select><br />
+                                //@Html.TextBox("title",null,new {placeholder="Enter Title", @class="form-control"})
+                            @Html.TextBox("title",null,new{placeholder="Enter Title", @class="form-control"})
+                               
+                                <span id="lblError1" style="color: red;"></span>
+                                <br />
+                               
+                                @Html.TextArea("subtitle",null,4,90,new {placeholder="Enter Subtitle", @class="form-control",style="resize:none"})
+                                <span id="lblError2" style="color: red;"></span><br />
+                                <input id="fileUpload" class="form-control" name="file" type="file" />
+                                
+                                <span id="lblError" style="color: red;"></span>
+                                <br />
+                                <input type="submit" id="btnUpload" value="Upload" />
+                        }
+                        @if(ViewBag.msg!=null)
+                        {
+                            <span style="color:red;">@ViewBag.msg</span>
+                        }
+                        @if(TempData["msg"]!=null)
+                        {
+                            <span style="color:red;">@TempData["msg"]</span>
+                        }
+                        </div>
+                    <div class="col-sm-1"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="col-sm-7">
+            <section id="portfolio"  class="section-bg" >
+                <div class="container">
+                    <header class="section-header">
+                        <h3 class="section-title">Current Slider Image</h3>
+                    </header>
+                    <div class="row portfolio-container">
+                        @{
+                            DBManager Dbm = new DBManager();
+                            string cmd = "select *from ManageSlider order by sliderid desc";
+                            DataTable dt = Dbm.ExecuteSelect(cmd);
+                            int x=1;
+                            if(dt.Rows.Count==0){
+                                <span style="color:red">No Images are Uploaded</span>
+                        }
+                            foreach(DataRow dr in dt.Rows){
+                               
+                                <div class="col-lg-12 col-md-6 portfolio-item filter-app wow fadeInUp" style="margin-top:10%;">
+                                    <div class="portfolio-wrap">
+                                        <figure>
+                                            <img src="~/Content/SliderImages/@dr[3]" class="img-fluid" alt="">
+                                            <a href="~/Content/SliderImages/@dr[3]" data-lightbox="portfolio" style="left: calc(50% - 50px)" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
+                                           
+                                        </figure>
+
+                                        <div class="portfolio-info" style="min-height:200px;">
+                                            <h4><b>@x) @dr[1]</b></h4> 
+                                            <span>@dr[2]</span>
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                                x++; 
+                            }
+                        }
+         
+                        
+         
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

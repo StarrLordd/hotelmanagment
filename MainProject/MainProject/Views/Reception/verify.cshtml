@@ -1,0 +1,48 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Reset Password Form </title>
+    <link href="~/Content/css/Forget.css" rel="stylesheet" />
+<!-- Custom Theme files -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<meta name="keywords" content="Reset Password Form Responsive, Login form web template, Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+<!--google fonts-->
+<link href='//fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<!--element start here-->
+<div class="elelment">
+	@if(ViewBag.msg!=null)
+ {
+     <span style="color:red;">@ViewBag.msg</span>
+ }
+	<div class="element-main">
+		<h1>Enter One Time Password</h1>
+		@using(Html.BeginForm("verify","Reception")){
+			<input type="number" value="Your One Time Password Here...." name="ot" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your User Name';}">
+			<input type="submit" value="Submit">
+  }
+		
+	</div>
+</div>
+
+
+<!--element end here-->
+</body>
+</html>
+

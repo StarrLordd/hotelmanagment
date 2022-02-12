@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/ReceptionCommon.cshtml";
+}
+
+
+@using MainProject.Models;
+@using System.Data;
+
+<link href="~/Content/css/style.css" rel="stylesheet" />
+<div class="col-sm-12">
+    
+        
+        
+        <div class="col-sm-12">
+             <section id="portfolio" >
+                <div class="container">
+
+                    <header class="section-header">
+                    <h3>Check-Out Here</h3>
+                    </header>
+                   <div class="col-sm-12">
+                       <div class="row">
+                           <div class="col-sm-3"></div>
+                           <div class="col-sm-6">
+                               @using (Html.BeginForm("Checkout","Reception"))
+                               {
+                                   @Html.TextBox("id",null,new {placeholder="Enter Invoice Number",@class="form-control"})
+                                   <br />
+                                   <div class="text-center"><input type="submit" value="Check-out" /></div>
+                               }
+                           </div>
+                           <div class="col-sm-3"></div>
+                       </div>
+                   </div>
+
+                  
+        
+
+      </div>
+    </section>
+        </div>
+       
+</div>
+
+

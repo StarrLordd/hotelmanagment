@@ -1,0 +1,193 @@
+﻿@{
+    Layout = null;
+}
+@using MainProject.Models;
+@using System.Data;
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>printRecipt</title>
+    <style>
+        .body-main {
+     background: #ffffff;
+     border-bottom: 15px solid #1E1F23;
+     border-top: 15px solid #1E1F23;
+     padding: 40px 30px !important;
+     position: relative;
+     box-shadow: 0 1px 21px #808080;
+     font-size: 10px
+ }
+
+ .main thead {
+     background: #1E1F23;
+     color: #fff
+ }
+ .img {
+     height: 100px
+ }
+
+ h1 {
+     text-align: center
+ }
+       
+    </style>
+</head>
+<body>
+   @{
+       DBManager Dbm = new DBManager();
+       DataTable dt = Dbm.ExecuteSelect("select *from RoomBooking where Book_id='" + ViewBag.msg + "'");
+       foreach(DataRow dr in dt.Rows)
+       {
+          <div class="col-sm-12" >
+              <div class="row">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-8">
+				<div class="row">
+            <div class="col-sm-12 body-main" style="background:#e7eaed;font-family:'Times New Roman';min-height:1000px;">
+                <div class="row">
+                        <div class="col-sm-4" style="font-size:16px;">
+                             <img class="img" alt="Hotel Svarnima" src="~/Content/img/black%20logo.png" /><br /><br />
+                            <p>Invoice No. @dr[0]</p>
+                            <p>Name: @dr[1]</p>
+                            <p></p>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <h3 style="color:green;">INVOICE</h3>
+                            
+                        </div>
+                    </div>
+                        </div>
+                        <div class="col-sm-4 h6 text-right">
+                            <h4 style="color: #F81D2D;">Hotel Svarnima</h4>
+                            <p>Sitapur</p>
+                            <p>Ratnavali Marg</p>
+                            <p>+91 9792869696, +91 9415183681</p>
+                            <p>Hotelsvarnima01@gmail.com</p>
+                        </div>
+                    </div> <br />
+                     <br /><br /><br /><br />
+                    <div id="paid">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <h5>Description</h5>
+                                    </th>
+                                    <th>
+                                        <h5>Amount</h5>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody style="font-size:16px;">
+                                <tr>
+                                    <td class="col-sm-9">Amount Per Room  (<span style="color:red">Including all tax</span>)</td>
+                                    <td class="col-sm-3"><i class="fas fa-rupee-sign" area-hidden="true"></i> 999.00</td>
+                                </tr>
+                                <tr>
+                                    <td class="col-sm-9">No. of Room</td>
+                                    <td class="col-sm-3">@dr[3] </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-sm-9">No. of Day</td>
+                                    @{
+           DBManager Db = new DBManager();
+           string cmd = "select check_in,check_out,MainCheck_out from Guestdetail where Guest_Id='" + dr[2].ToString() + "'";
+           DataTable dtt = Db.ExecuteSelect(cmd);
+           foreach (DataRow drr in dtt.Rows)
+           {
+               if (drr[2].ToString() != "")
+               {
+                   string dd1 = drr[2].ToString();
+                   string dd2 = drr[0].ToString();
+                   TimeSpan xx = DateTime.Parse(dd1) - DateTime.Parse(dd2);
+                   int day = int.Parse(xx.Days.ToString());
+                   <td class="col-sm-3">@day</td>
+               }
+               else
+               {
+                   string dd1 = drr[1].ToString();
+                   string dd2 = drr[0].ToString();
+                   TimeSpan xx = DateTime.Parse(dd1) - DateTime.Parse(dd2);
+                   int day = int.Parse(xx.Days.ToString());
+                   <td class="col-sm-3">@day</td>   
+               }
+           }
+                                    }
+                                    
+                                </tr>
+                                
+                                <tr style="color: #F81D2D;">
+                                    <td class="text-left">
+                                        <h5><strong>Total:</strong></h5>
+                                    </td>
+                                    <td>
+                                        <h5><i class="fas fa-rupee-sign" area-hidden="true"></i> @dr[6] </h5>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-sm-9">Advance Amount</td>
+                                    <td class="col-sm-3">@dr[4] </td>
+                                
+                                <tr style="color: #F81D2D;">
+                                    <td class="text-left">
+                                        <h4><strong>Total Payable Amount: </strong></h4>
+                                    </td>
+                                    <td>
+                                        <h5><i class="fas fa-rupee-sign" area-hidden="true"></i> @dr[5] </h5>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                @{
+                    int y=int.Parse(dr[5].ToString());
+                    if (y==0)
+                    {
+                <img src="~/Content/img/paid.png" style="position:absolute;left:35%;top:40%;"/>
+                }
+                }
+                @{
+                    int x=int.Parse(dr[5].ToString());
+                    if (x>0)
+                    {
+                    <div class="text-center">
+                        @using (Html.BeginForm("printRecipt", "Reception"))
+                        {
+                            <input type="hidden" value="@dr[0]" name="rid" />
+                            <input type="submit" value="Pay Full Amount" />
+                        }
+                    </div>
+                    }
+                
+                }
+                    <div>
+                        <div class="col-sm-12">
+                            <p><b>Date :</b> @DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss tt")</p> <br />
+							<input type="button" value="Print" onclick="print()"/>
+                        </div>
+						<script>
+						    function bttn() {
+						        window.print();
+						    }
+    </script>
+                    </div>
+                <p style="font-size:16px;margin-top:20%;">Thanks for visit in <b>Hotel Svarnima</b>. please don't forget to Give your valuable Feedback though <span style="color:#0000ff;"><u><a href="http://www.hotelsvarnima.org/">http://www.hotelsvarnima.org/</a></u></span>.</p>
+            </div>
+        </div>
+			</div>
+			<div class="col-sm-2"></div>
+		</div>
+          </div> 
+       }
+   }
+
+</body>
+</html>

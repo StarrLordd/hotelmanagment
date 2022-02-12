@@ -1,0 +1,114 @@
+﻿@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="zxx">
+<!-- Head -->
+
+<head>
+    <title>Admin Login Pannel</title>
+    <!-- Meta-Tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Key Login Form a Responsive Web Template, Bootstrap Web Templates, Flat Web Templates, Android Compatible Web Template, Smartphone Compatible Web Template, Free Webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design">
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+        
+    </script>
+    <!-- //Meta-Tags -->
+    <!-- Index-Page-CSS -->
+    <link href="~/Content/css/style1.css" rel="stylesheet" />
+    <!-- //Custom-Stylesheet-Links -->
+    <!--fonts -->
+    <!-- //fonts -->
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- //Font-Awesome-File-Links -->
+	
+	<!-- Google fonts -->
+	<link href="//fonts.googleapis.com/css?family=Quattrocento+Sans:400,400i,700,700i" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Mukta:200,300,400,500,600,700,800" rel="stylesheet">
+	<!-- Google fonts -->
+
+</head>
+<!-- //Head -->
+<!-- Body -->
+
+<body>
+
+<section class="main">
+	<div class="layer">
+       
+		
+		<div class="content-w3ls">
+			<div class="text-center icon">
+				<span class="fa fa-user"></span>
+			</div>
+			<div class="content-bottom">
+                <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+				<script>
+				    function ValidateUser() {
+				        var return_val = true;
+				        if ($("#id").val() == null) {
+				            $("#sp1").val("Please Enter Username");
+				            return_val = false;
+				        }
+				        if ($("#pass").val() == null) {
+				            $("#sp1").val("Please Enter Password");
+				            return_val = false;
+				        }
+				    }
+				</script>
+                    @using (Html.BeginForm("login", "Admin", FormMethod.Post, new { onsubmit = "ValidateUser();" }))
+                    {
+					<div class="field-group">
+						<span class="fa fa-user" aria-hidden="true"></span>
+						<div class="wthree-field">
+							
+                            @Html.TextBox("id", null, new { placeholder = "Enter Username" })
+						</div>
+					</div>
+                        <span id="sp1" style="color:red;"></span>
+					<div class="field-group">
+						<span class="fa fa-lock" aria-hidden="true"></span>
+						<div class="wthree-field">
+                            @Html.TextBox("pass", null, new { placeholder = "Enter Password", type = "password" })
+							
+						</div>
+					</div>
+                        <span id="sp2" style="color:red;"></span>
+                        
+					<div class="wthree-field">
+						<button type="submit" id="btn" class="btn">Login</button>
+					</div>
+                        <span style="color:red;margin-left:1%;">@ViewBag.res</span>
+					<ul class="list-login">
+						
+						<li>
+							<a href="#" class="text-right">forgot password?</a>
+						</li>
+						<li class="clearfix"></li>
+					</ul>
+                    }
+			</div>
+		</div>
+			
+			<div class="copyright">
+				<p>© All rights reserved | Design by
+					<a href="http://mykss.in">Kamadgiri Software Solutions</a>
+				</p>
+			</div>
+		
+    </div>
+</section>
+
+</body>
+<!-- //Body -->
+</html>

@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "SendSMS";
+    Layout = "~/Views/Shared/AdminCommon.cshtml";
+}
+<link href="~/Content/css/style.css" rel="stylesheet" />
+<div class="col-sm-12">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <section id="contact" class="section-bg wow fadeInUp">
+      <div class="container">
+           <div class="section-header">
+          <h3>Send SMS</h3>
+          
+        </div>
+       
+
+       
+
+        <div class="form" id="enq">
+          
+         
+        @using(Html.BeginForm("SendSMS","Admin",new{role="form", @class="contactForm"})){
+           
+            <div class="form-group">
+                <script src="~/Content/js/main.js"></script>
+              <input type="number" class="form-control" name="number" id="subject" placeholder="Mobile Number" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+              <div class="validation"></div>
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+              <div class="validation"></div>
+            </div>
+            <div class="text-center"><input type="submit" value="Send Message"></div>
+         
+        
+        }
+             @if(TempData["msg"]!=null)
+         {
+              <span style="color:red;">@TempData["msg"]</span>
+         }
+        </div>
+
+      </div>
+    </section>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+</div>

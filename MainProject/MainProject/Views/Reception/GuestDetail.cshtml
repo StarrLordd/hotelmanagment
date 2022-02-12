@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "GuestDetail";
+    Layout = "~/Views/Shared/ReceptionCommon.cshtml";
+}
+@using MainProject.Models;
+@using System.Data;
+
+<link href="~/Content/css/style.css" rel="stylesheet" />
+<div class="col-sm-12">
+    
+        
+        
+        <div class="col-sm-12">
+             <section id="portfolio" >
+                <div class="container">
+
+                    <header class="section-header">
+                    <h3>Manage Online Request</h3>
+                    </header>
+                    <table border="1" style="width:100%;" cellpadding="10">
+                        <tr>
+                            <th>Guest ID</th><th>Name</th><th>Mobile Number</th><th>Email ID</th><th>Number of Room</th><th>Check-IN</th><th>Check-Out</th><th>Advance</th><th>Total</th>
+                        </tr>
+                        @{
+                            DBManager Dbm = new DBManager();
+                            string cmd = "Select *from RoomBooking order by book_id desc";
+                            DataTable dt = Dbm.ExecuteSelect(cmd);
+                            foreach(DataRow dr in dt.Rows)
+                            {
+                                string iid = dr[2].ToString();
+                                cmd = "select *from GuestDetail where Guest_id='"+iid+"' ";
+                                dt = Dbm.ExecuteSelect(cmd);
+                                foreach(DataRow drr in dt.Rows)
+                                {
+                                <tr>
+                                    <td>@dr[0]</td><td>@dr[1]</td><td>@drr[3]</td><td>@drr[2]</td><td>@dr[3]</td><td>@drr[6]</td><td>@drr[7]</td><td>@dr[4]</td><td>@dr[6]</td>
+                                 </tr>
+                        }
+                        }
+                        }
+                    </table>
+
+                  
+        
+
+      </div>
+    </section>
+        </div>
+       
+</div>
+
+

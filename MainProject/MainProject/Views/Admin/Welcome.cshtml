@@ -1,0 +1,196 @@
+﻿@{
+    ViewBag.Title = "Welcome";
+    Layout = "~/Views/Shared/AdminCommon.cshtml";
+}
+<style>
+    .dash {
+        min-height: 200px;
+        margin-top:10%;
+        box-shadow:0px 0px 10px black;
+        background:#d5ab3b;
+        color:white;
+        text-align:center;
+        font-size:40px;
+        padding-top:10%;
+    }
+        .dash:hover {
+            background: #007bff;
+        }
+</style>
+<div class="col-sm-12" style="background: linear-gradient(rgba(255,215,0,.6),rgba(0, 122, 204, 0.6),rgba(255,215,0,.6)), url(/Content/img/intro-carousel/Htr5.jpg) fixed center center;padding-bottom:5%;">
+<div class="row">
+<div class="col-sm-12">
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="col-sm-12">
+                       <a href="/Admin/ManageRoom"> 
+                           <div class="col-sm-12 dash hvr-grow" title="Manage Hotel Rooms">
+                                <i class="fas fa-hotel"></i>
+                               <h3>Manage Hotel Rooms</h3>
+                           </div>
+                       </a>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="col-sm-12">
+                        <a href="/Admin/ManageImage"> 
+                           <div class="col-sm-12 dash hvr-grow" title="Manage Image Gallery">
+                                <i class="fas fa-images"></i>
+                               <h3>Manage Image Gallery</h3>
+                           </div>
+                       </a>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="col-sm-12">
+                        <a href="/Admin/ManageVideo"> 
+                           <div class="col-sm-12 dash hvr-grow" title="Manage Video Gallery">
+                                <i class="fas fa-video"></i>
+                               <h3>Manage Video Gallery</h3>
+                           </div>
+                       </a>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="col-sm-12">
+                        <a href="/Admin/AddReception"> 
+                           <div class="col-sm-12 dash hvr-grow" title="Add Receptioinsts">
+
+                                <i class="fas fa-user-plus"></i>
+                               <h3>Add Receptioinsts</h3>
+                           </div>
+                       </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+   
+</div>
+
+<div class="col-sm-12">
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="col-sm-12">
+                        <a href="/Admin/ManageReceptionist"> 
+                           <div class="col-sm-12 dash hvr-grow" title="Manage Receptionists">
+                                <i class="fas fa-user-slash"></i>
+                               <h3>Manage Receptionists</h3>
+                           </div>
+                       </a>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="col-sm-12">
+                        <a href="/Admin/ManageSlider"> 
+                           <div class="col-sm-12 dash hvr-grow" title="Manage Slider Images">
+                                <i class="fas fa-exchange-alt"></i>
+                               <h3>Manage Slider Images</h3>
+                           </div>
+                       </a>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="col-sm-12">
+                        <a href="/Admin/ManageEnquiry"> 
+                           <div class="col-sm-12 dash hvr-grow" title="Manage Enquiry">
+                                <i class="fas fa-comment-dots"></i>
+                               <h3>Manage Enquiry</h3>
+                           </div>
+                       </a>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="col-sm-12">
+                        <a href="#"> 
+                           <div class="col-sm-12 dash hvr-grow" title="Manage Feedback">
+                                <i class="fas fa-comments"></i>
+                               <h3>Manage Feedback</h3>
+                           </div>
+                       </a>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+   
+</div>
+
+<div class="col-sm-12">
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="col-sm-12">
+                        <a href="/Admin/SendSMS"> 
+                           <div class="col-sm-12 dash hvr-grow" title="Send SMS">
+                                <i class="fas fa-sms"></i>
+                               <h3>Send SMS</h3>
+                           </div>
+                       </a>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="col-sm-12">
+                        <a href="/Admin/SendEmail"> 
+                           <div class="col-sm-12 dash hvr-grow" title="Send Email">
+                                 <i class="fas fa-mail-bulk"></i>
+                               <h3>Send Email</h3>
+                           </div>
+                       </a>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="col-sm-12">
+                        <a href="/Admin/MyProfile"> 
+                           <div class="col-sm-12 dash hvr-grow" title="My Profile">
+                                <i class="fas fa-user-circle"></i>
+                               <h3>My Profile</h3>
+                           </div>
+                       </a>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="col-sm-12">
+                        <a href="~/Admin/logout"> 
+                        
+                           <div class="col-sm-12 dash hvr-grow" title="Logout">
+                                 <i class="fas fa-sign-out-alt"></i>
+                               <h3>Logout</h3>
+                           </div>
+                       </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+   
+</div>
+
+    </div>
+    </div>
+
+
+
+
+

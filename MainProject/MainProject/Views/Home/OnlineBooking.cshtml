@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Booking";
+    Layout = "~/Views/Shared/GeneralComman.cshtml";
+}
+<style>
+    .sp {
+        color: white;
+        font-size: 18px;
+    }
+    #portfolio .container input, #portfolio .container textarea{
+        background: rgba(255,255,255,.5);
+        color:white;
+    }
+    #portfolio .container input::placeholder,#portfolio .container textarea::placeholder {
+        color: silver;
+    }
+        
+</style>
+<div class="col-sm-12" style="background:url('/Content/img/booking.jpg');min-height:600px;background-repeat:no-repeat;background-size:cover">
+    <div class="row" style="background:rgba(0,0,0,.5)">
+        
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6" style="margin-top:5%;">
+             <section id="portfolio" >
+                <div class="container">
+
+                    <header class="section-header">
+                    <h3 style="color:#fff;text-shadow:0px 0px 10px black">Book Your Room</h3>
+       </header>
+                    <span style="color:green;font-size:18px">@ViewBag.Msg</span>
+                    @using(Html.BeginForm("Booking","Home"))
+                    {
+                        string total = ViewBag.total;
+                        string room=ViewBag.room;
+                        <input type="hidden" value="@ViewBag.cin" name="cin" />
+                        <input type="hidden" value="@room" name="room" />
+                        string day = ViewBag.day;
+                        <input type="hidden" value="@day" name="day" />
+                        <span class="sp">Enter Your Name</span>
+                        @Html.TextBox("name",null,new{placeholder="Enter Your Name", @class="booking_input"})<br /><br />
+                        <span class="sp">Enter Your Mobile Number</span>
+                        @Html.TextBox("number",null,new{Placeholder="Enter Your Mobile Number",@class="booking_input"})<br /><br />
+                        <span class="sp">Enter Your Email ID</span>
+                        @Html.TextBox("email",null,new {placeholder="Enter Your Email",@class="booking_input"})<br /><br />
+                        <span class="sp">Enter Your Address</span>
+                        @Html.TextArea("addr",new{placeholder="Enter YOur Address",@class="booking_input", rows="4",style="resize:none;"})<br /><br />
+                        <span class="sp">Total Price:</span> 
+                        @Html.TextBox("price",total,new{@class="booking_input",@readonly="readonly"})<br /><br />
+                        <div class="text-center"><input type="submit" value="Proceed" class="btn-success"></div>
+                        
+                    }
+
+        
+
+      </div>
+    </section>
+        </div>
+        <div class="col-sm-3"></div>
+
+    </div>
+</div>

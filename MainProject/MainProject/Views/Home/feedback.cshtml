@@ -1,0 +1,232 @@
+﻿@{
+    ViewBag.Title = "feedback";
+    Layout = "~/Views/Shared/GeneralComman.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+<script>
+    function validate() {
+        var name = document.getElementById("txt").value.trim();
+        var sub = document.getElementById("txtt").value.trim();
+        var pic = document.getElementById("pic").value.trim().toLowerCase();
+        var msg = document.getElementById("mssg").value.trim();
+        var mob = document.getElementById("num").value.trim();
+        var star = document.getElementById("star").value.trim();
+        var spname = document.getElementById("spname");
+        var spsub = document.getElementById("spsub");
+        var spfile = document.getElementById("spfile");
+        var spmob = document.getElementById("spmob");
+        var spmsg = document.getElementById("spmsg");
+        var spstar = document.getElementById("spstar");
+        
+        spname.innerHTML = "";
+        spsub.innerHTML = "";
+        spmob.innerHTML = "";
+        spmsg.innerHTML = "";
+        //for name validation...........
+        var status = true;
+        if (name.length == 0) {
+            spname.innerHTML = "Please Enter Name.";
+            status = false;
+        }
+        else if (name.length < 3) {
+            spname.innerHTML = "Please enter a Valid name";
+            status = false;
+        }
+
+        //For Subject Validation.....
+        if (sub.length == 0) {
+            spsub.innerHTML = "Please Enter Subject.";
+            status = false;
+        }
+        else if (sub.length < 3) {
+            spsub.innerHTML = "Please enter a Valid Subject";
+            status = false;
+        }
+
+
+        //For File Validation
+        if (pic.length == 0) {
+            spfile.innerHTML = "Please Select a Photo";
+            status = false;
+        }
+        else if (pic.substring(pic.lastIndexOf(".")+1) != "jpg" && pic.substring(pic.lastIndexOf(".")+1) != "png" && pic.substring(pic.lastIndexOf(".")+1) != "jpeg") {
+            spfile.innerHTML = "Please enter a Valid FIle";
+            status = false;
+        }
+
+
+        //For Number validation
+        if (mob.length == 0) {
+            spmob.innerHTML = "Please  enter Mobile Number.";
+            status = false;
+        }
+        else if (mob.length == 10) {
+            var ch = mob.charCodeAt(0);
+            if (ch >= 54 && ch <= 57) {
+
+            }
+            else {
+                spmob.innerHTML = "Invalid Indian Mobile Number.";
+                status = false;
+            }
+        }
+        else {
+            spmob.innerHTML = "Invalid mobile number.";
+            status = false;
+        }
+        //For validation of mssg.....
+        if (msg.length == 0) {
+            spmsg.innerHTML = "Please Enter Subject.";
+            status = false;
+        }
+        else if (msg.length < 3) {
+            spmsg.innerHTML = "Please enter a Valid Subject";
+            status = false;
+        }
+        
+        if (star < 1) {
+            spstar.innerHTML = "Please Select Rating";
+            status = false;
+        }
+        return status;
+
+
+    }
+</script>
+<style>
+    .rating {
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+    }
+    .ff {
+        width: 25px;
+        height: 25px;
+    }
+    .dv {
+        margin: 6em auto;
+        min-height: 550px;
+        background:rgba(0,0,0,.8);
+    }
+    .sppp {
+        font-size: 20px;
+        font-weight: bold;
+        margin-left: 4%;
+        color:#c1c1c1;
+    }
+    .feed {
+        font-size: 39px;
+        margin-left: 4%;
+        font-weight: bold;
+        color: gray;
+        font-family:'Microsoft Sans Serif';
+        padding-bottom:5%;
+    }
+    .form-control {
+        margin-top: 6%;
+    }
+    .spp {
+        font-size: 18px;
+        
+    }
+    .ch {
+        margin-left: 10%;
+        margin-top:8%;
+    }
+       .animated {
+  animation-duration: 2.5s;
+  animation-delay: 1s;
+} 
+    .btn {
+        overflow: hidden;
+        margin-bottom:2%;
+    }
+        .btn:focus {
+            outline: none;
+            background: #1896d1;
+        }
+    .spred {
+        color: red;
+    }
+    .spgreen {
+        color: green;
+    }
+
+</style>
+<div class="col-sm-12" style="min-height:650px;background:url('/Content/img/intro-carousel/Htr9.jpg');">
+    <div class="row">
+        <div class="col-sm-4"></div>
+       
+        <div class="col-sm-4 dv animated fadeInUp " style="box-shadow:2px 2px 10px black;">
+            <div class="row">
+                <p style="background:#1896d1;width:100%;color:white;padding:5%;font-size:25px;font-weight:bold;font-family:'Microsoft Sans Serif';" class="text-center">YOUR VALUABLE FEEDBACK</p>
+            </div>
+           
+                @Html.TextBox("name", null, new { placeholder = "Enter Your Name", @class = "form-control", id = "txt", required = "required" })<span id="spname" style="color:red"></span>
+                @Html.TextBox("sub", null, new { placeholder = "Enter Subject", @class = "form-control", id = "txtt", required = "required" })<span id="spsub" style="color:red"></span>
+                <input type="file" class="form-control" id="pic" name="pic" /><span id="spfile" style="color:red"></span>
+                @Html.TextBox("mob", null, new { placeholder = "Enter Your Moblie Number", @class = "form-control", id = "num", type = "number" }) <span id="spmob" style="color:red"></span>
+                @Html.TextArea("msg", new { placeholder = "Enter Your Feedback", @class = "form-control", id = "mssg", style = "resize:none", required = "required" })<span id="spmsg" style="color:red"></span>
+                <br />
+                <img data-star="1" class="rating" src="~/Content/img/intro-carousel/star.png" />
+                <img data-star="2" class="rating" src="~/Content/img/intro-carousel/star.png" />
+                <img data-star="3" class="rating" src="~/Content/img/intro-carousel/star.png" />
+                <img data-star="4" class="rating" src="~/Content/img/intro-carousel/star.png" />
+                <img data-star="5" class="rating" src="~/Content/img/intro-carousel/star.png" />
+                @Html.TextBox("hi", null, new { type = "hidden", id = "star" })<span id="spstar" style="color:red"></span>
+
+                <input type="button" value="Submit" style="margin-top:1%;" id="btnn" onclick="return validate()" class="btn btn-info form-control" />
+                <span id="spres"></span>
+            
+            </div>
+        <div class="col-sm-4"></div>
+    </div>
+</div>
+ <script src="~/Content/js/jquery-3.4.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".rating").click(function () {
+            var star = $(this).attr("data-star");
+            $(".rating").each(function (x) {
+                if (x < star) {
+                    $(this).attr("src", "/Content/img/intro-carousel/color.png");
+                } else {
+                    $(this).attr("src", "/Content/img/intro-carousel/star.png");
+                }
+            });
+            $("#star").val(star);
+        });
+  
+ 
+    ///TO SAve Review By Ajax
+
+        
+    $("#btnn").click(function () {
+        var name,num, sub, msg, starrating;
+        name = $("#txt").val();
+        sub = $("#txtt").val();
+        num = $("#num").val();
+        msg = $("#mssg").val();
+        starrating = $("#star").val();
+       
+            var mydata = { fname: name, subject: sub, numb: num, mssg: msg, star: starrating };
+            $.getJSON("/Home/saveFeed", mydata, function (res) {
+                if (res == "Thanks For your Feedback!") {
+                    $("#spres").addClass('spgreen');
+                    $("#spres").text("Thanks For your Feedback!");
+                    //alert(res);
+                }
+                else {
+                    $("#spres").addClass('spred');
+                    $("#spres").text("Something went wrong!");
+                }
+            });
+        
+       
+
+    });  
+    });
+</script>
+
+

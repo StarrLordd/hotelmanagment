@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "UpdatePro";
+    Layout = "~/Views/Shared/AdminCommon.cshtml";
+}
+@using MainProject.Models;
+@using System.Data;
+<link href="~/Content/css/style.css" rel="stylesheet" />
+
+ <section id="testimonials" class="section-bg wow fadeInUp">
+      <div class="container">
+
+        <header class="section-header">
+          <h3>Update Profile Info</h3>
+        </header>
+
+        <div class="owl-carousel testimonials-carousel col-sm-12">
+             @{
+                  DBManager Dbm = new DBManager();
+                  string cmd = "select *from Admin";
+                  DataTable dt = Dbm.ExecuteSelect(cmd);
+                  foreach(DataRow dr in dt.Rows)
+                  {
+                      <div class="row">
+                          <div class="col-sm-2"></div>
+                          <div class="col-sm-8">
+                              @using (Html.BeginForm("UpdatePro", "Admin"))
+                              {
+                                  <div class="form-group">
+                                        @Html.TextBox("id",@dr[0],new{@class="form-control",placeholder="Enter New User Id"})
+                                        <div class="validation"></div>
+                                  </div>
+                                  <div class="form-group">
+                                        @Html.TextBox("name",@dr[1],new{@class="form-control",placeholder="Enter Name"})
+                                        <div class="validation"></div>
+                                  </div>
+                                  <div class="form-group">
+                                        @Html.TextBox("mobile",@dr[3],new{@class="form-control",placeholder="Enter New Mobile Id"})
+                                        <div class="validation"></div>
+                                  </div>
+                                  <div class="form-group">
+                                        @Html.TextBox("email",@dr[4],new{@class="form-control",placeholder="Enter New Email Id"})
+                                        <div class="validation"></div>
+                                  </div>
+                                  <input type="submit" value="Submit" class="btn-success" />
+                              }
+                          </div>
+                          <div class="col-sm-2"></div>
+                      </div>
+                  }
+             }
+         </div>
+        </div>
+
+      
+    </section>

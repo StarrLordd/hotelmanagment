@@ -1,0 +1,121 @@
+﻿@{
+    ViewBag.Title = "HotelRooms";
+    Layout = "~/Views/Shared/GeneralComman.cshtml";
+}
+@using MainProject.Models;
+@using System.Data;
+<style>
+    .animated {
+  animation-duration: 2s;
+  animation-delay: 1s;
+}
+</style>
+<div class="col-sm-12 hr-back">
+    <p class="fadeInUp animated" style="padding-top:200px;color:white;font-weight:bolder;font-size:50px;text-align:center;text-shadow:0px 0px 10px black;">Our Grand Rooms</p>
+   <center>
+       <span style="color:white;text-align:center;text-shadow:0px 0px 5px #000" class="fadeInUp animated">A Grand room is a room inside a house that combines the roles of several<br /> more traditional rooms like that family room, the living room, the study and many more into one space.</span>
+   </center> 
+    <br />
+    <center><span class="fa fa-"></span></center>
+</div>
+<!-----------------Rooms Section------------------>
+ <section id="portfolio"  class="section-bg" >
+      <div class="container">
+
+        <header class="section-header">
+          <h3 class="section-title">Our Grand Hotel</h3>
+        </header>
+          
+        <div class="row portfolio-container">
+            @{
+                DBManager Dbm = new DBManager();
+                string cmd = "select *from ManageRoom order by roomid desc";
+                DataTable dt = Dbm.ExecuteSelect(cmd);
+                foreach(DataRow dr in dt.Rows){
+                     <div class="col-lg-3 col-md-6 portfolio-item filter-app wow fadeInUp">
+            <div class="portfolio-wrap">
+              <figure>
+                <img src="~/Content/RoomImages/@dr[2]" class="img-fluid" alt="">
+                <a href="~/Content/RoomImages/@dr[2]" data-lightbox="portfolio" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
+                
+              </figure>
+
+              <div class="portfolio-info">
+                <h4><a href="#">@dr[1]</a></h4> 
+              </div>
+            </div>
+          </div>
+                }
+            }
+         
+
+         
+
+        </div>
+
+      </div>
+    </section>
+<!---============Hotel Features---------->
+
+
+   <section id="services">
+      <div class="container">
+
+        <header class="section-header wow fadeInUp">
+          <h3>Our Features</h3>
+          <p>We are trying our best to develop our hotel fully featured so that our guest don't have to face any type of trubbeling.  </p>
+</p>
+        </header>
+
+        <div class="row">
+             <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
+            <div class="icon"><i class="ion-ios-water"></i></div>
+            <h4 class="title"><a href="">Air cooling in all rooms</a></h4>
+            <p class="description">The AC Room is the comfortabe choice for two occupants. The room comes with a double bed and is air-conditioned.  </p>
+          </div>
+          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
+            <div class="icon"><i class="ion-ios-bookmarks-outline"></i></div>
+            <h4 class="title"><a href="">Room servicing</a></h4>
+            <p class="description">Room service or in-room dining is our hotel service enabling guests to choose items of food and drink. </p>
+          </div>
+          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
+            <div class="icon"><i class="ion-ios-outline fa fa-car"></i></div>
+            <h4 class="title"><a href="">Parking space</a></h4>
+            <p class="description">We have a wide area for  parking. Guests can park their vehicals under the hotels with the responsibility and security.</p>
+          </div>
+
+          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
+            <div class="icon"><i class="ion-ios-analytics-outline"></i></div>
+            <h4 class="title"><a href="">Air cooling in all rooms</a></h4>
+            <p class="description">The AC Room is the comfortabe choice for two occupants. The room comes with a double bed and is air-conditioned.  </p>
+          </div>
+          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
+            <div class="icon"><i class="ion-ios-bookmarks-outline"></i></div>
+            <h4 class="title"><a href="">Room servicing</a></h4>
+            <p class="description">Room service or in-room dining is our hotel service enabling guests to choose items of food and drink. </p>
+          </div>
+          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-duration="1.4s">
+            <div class="icon"><i class="ion-ios-outline fa fa-car"></i></div>
+            <h4 class="title"><a href="">Parking space</a></h4>
+            <p class="description">We have a wide area for  parking. Guests can park their vehicals under the hotels with the responsibility and security.</p>
+          </div>
+          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+            <div class="icon"><i class="ion-ios-speedometer-outline"></i></div>
+            <h4 class="title"><a href="">Free Wi-Fi in the entire hotel</a></h4>
+            <p class="description">We provides free Wi-Fi to our guest. Therefore they can connected to socia lmedia without any retriction of Mobile networks.</p>
+          </div>
+          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+            <div class="icon"><i class="ion-ios-cafe ion-coffee"></i></div>
+            <h4 class="title"><a href="">Restaurant</a></h4>
+            <p class="description">We have grand resturant in our Hotels which we can provide fast-food and foods to guest.</p>
+          </div>
+          <div class="col-lg-4 col-md-6 box wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+            <div class="icon"><i class="ion-ios-people-outline"></i></div>
+            <h4 class="title"><a href="">Catering services</a></h4>
+            <p class="description">We provdes cataring services to our guests. Belevable, clean and pure Cataring is prepared by a highly</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>

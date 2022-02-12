@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = "ManageVideo";
+    Layout = "~/Views/Shared/AdminCommon.cshtml";
+}
+@using MainProject.Models
+@using System.Data
+<link href="~/Content/css/style.css" rel="stylesheet" />
+<div class="col-sm-12">
+    <div class="row">
+        <div class="col-sm-4">
+            <section id="portfolio"  class="section-bg" >
+                <div class="container">
+                    <header class="section-header">
+                        <h3 class="section-title">Upload Slider Image</h3>
+                    </header>
+                    <div class="row">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-10">
+                        @using (Html.BeginForm("ManageVideo", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                             
+                               
+                            @Html.TextBox("titlee",null,new{placeholder="Enter Title", @class="form-control"})
+                               
+                                <span id="lblError1" style="color: red;"></span>
+                                <br />
+                            @Html.TextBox("link",null,new{placeholder="Enter Video Link", @class="form-control"})
+                             @*   <input id="fileUpload" class="form-control" name="file" type="file" />*@
+                                
+                                <span id="lblError" style="color: red;"></span>
+                                <br />
+                                <input type="submit" id="btnUpload" value="Upload" />
+                        }
+                        @if(ViewBag.msg!=null)
+                        {
+                            <span style="color:red;">@ViewBag.msg</span>
+                        }
+                        @if(TempData["msg"]!=null)
+                        {
+                            <span style="color:red;">@TempData["msg"]</span>
+                        }
+                        </div>
+                    <div class="col-sm-1"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="col-sm-8">
+            <section id="portfolio"  class="section-bg" >
+      <div class="container">
+
+        <header class="section-header">
+          <h3 class="section-title">Current Room Images</h3>
+        </header>
+
+        <div class="row portfolio-container">
+            @{
+                DBManager Dbm = new DBManager();
+                string cmd = "select *from ManageGallery where gal_type='false' order by Gal_ID desc ";
+                DataTable dt = Dbm.ExecuteSelect(cmd);
+                if(dt.Rows.Count==0){
+                    <span style="color:red">No Video are Uploaded</span>
+            }
+                foreach(DataRow dr in dt.Rows){
+                     <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp">
+            <div class="portfolio-wrap">
+              <figure>
+                <iframe width="560" height="500" src="@dr[2]" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" class="img-fluid" allowfullscreen></iframe>
+              </figure>
+
+              <div class="portfolio-info" style="min-height:50px;padding:10px;">
+                
+                    <h4 style="line-height:normal;text-align:left"><a href="#">@dr[1]</a>
+                        <a style="text-align:right" href="/Admin/DeleteVideo?id=@dr[0]"><i class="fa fa-trash"></i></a>
+                    </h4>
+               
+              </div>
+                
+            </div>
+          </div>
+                }
+            }
+         
+
+         
+
+        </div>
+
+      </div>
+    </section>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,199 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+   <meta charset="utf-8">
+  <title>Welcome to Hotel Svarnima</title>
+    <link rel="icon" href="~/Content/img/intro-carousel/MenuLogi.png" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="~/Content/img/favicon.png" rel="icon">
+  
+  <link href="~/Content/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="~/Content/css/animate.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+    <script src="~/Content/js/jquery-3.4.1.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="~/Content/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="~/Content/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="~/Content/lib/animate/animate.min.css" rel="stylesheet">
+  <link href="~/Content/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="~/Content/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="~/Content/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+  <link href="~/Content/css/style.css" rel="stylesheet">
+    <script>
+        $(document).ready(function () {
+            var url = location.href;
+            
+            mainurl = url.substring(url.lastIndexOf("/")+1)
+            if (mainurl == "" || mainurl == "Index") {
+                $("#index").addClass("menu-active");
+            }
+            else if (mainurl == "HotelRooms")
+                $("#hr").addClass("menu-active");
+        });
+
+
+
+        
+    </script>
+
+</head>
+<body>
+    <header id="header">
+    <div class="container-fluid">
+
+      <div id="logo" class="pull-left">
+           <img src="~/Content/img/intro-carousel/white%20logo.png"  style="margin-top:-27%;max-height:100px" />
+       <!---  <h1>
+           <img src="~/Content/img/intro-carousel/MenuLogi.png" height="50"/>
+           
+            <a href="#intro" class="scrollto">
+            SVARNIMA</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
+         
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li id="index" class="">
+              @Html.ActionLink("Home","index")
+          </li>
+            <li id="ab"><a href="/#about">About Us</a></li>
+            <li id="ser"><a href="/#services">Services</a></li>
+             <li id="hr">@Html.ActionLink("Hotel Rooms","HotelRooms")</li>
+             
+         <!--- <li>@Html.ActionLink("Our Camus","#")</li>  --->
+           
+         <li><a href="/#portfolio">Image Gallery</a></li>
+          
+            
+            
+            <li id="con"><a href="/#contact">Contact Us</a></li>
+          
+            <li id="fee">@Html.ActionLink("Feedback","feedback")</li>
+         
+           
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+  </header><!-- #header -->
+
+   @RenderBody()
+
+
+      <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-info">
+            <h3>Svarnima</h3>
+            <p>Hotel Svarnima located at Chtrakoot is a landmark in the road of the Ramghat. It is one of the prime properties spread over a sprawling area with 4 floors that are distributed in 25 rooms, it has a high degree of accommodative capacity.</p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="ion-ios-arrow-right"></i> <a href="#">Home</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="#about">About us</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="#services">Services</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="#">Terms of service</a></li>
+              <li><i class="ion-ios-arrow-right"></i> <a href="#">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h4>Contact Us</h4>
+            <p>
+              Sitapur <br>
+              Ratnavali Marg<br>
+              Chitrakoot, Uttar Pradesh <br>
+              <strong>Phone:</strong> +91 9415183681<br>
+              <strong>Email:</strong> Hotelsvarnima01@gmail.com<br>
+            </p>
+
+            <div class="social-links">
+              <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+              <a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+              <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+              <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+            </div>
+
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-newsletter">
+            <h4>Our Newsletter</h4>
+            <p>Hotel Svarnima is one of the best luxury hotel in Chitrakoot. It is among the top hotel in Chitrakoot for business & holiday travel with unmatched location & best facilities, 15 rooms and suites. </p>
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit"  value="Subscribe">
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container col-sm-12" style="min-height:50px;">
+      <div class="copyright credits">
+        <span style="float:left;"> Copyright &copy; <strong>KSS</strong>. All Rights Reserved</span>
+     
+       
+        <span style="float:right;">Developed by <a target="_blank" href="https://www.linkedin.com/in/starrlord/"><b>Amit Kumar Tripathi</b></a></span>
+      </div>
+    </div>
+  </footer><!-- #footer -->
+
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+
+    <!---------------------------
+    Inquary..........................
+    ---------------------->
+
+
+        <a href="#contact" class="Enquiry"><i class="fa fa-comment"></i></a>
+
+
+
+
+    <!----------End--------------->
+ 
+  <script src="~/Content/lib/jquery/jquery.min.js"></script>
+ 
+  <script src="~/Content/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="~/Content/lib/easing/easing.min.js"></script>
+  <script src="~/Content/lib/superfish/hoverIntent.js"></script>
+  <script src="~/Content/lib/superfish/superfish.min.js"></script>
+  <script src="~/Content/lib/wow/wow.min.js"></script>
+  <script src="~/Content/lib/waypoints/waypoints.min.js"></script>
+  <script src="~/Content/lib/counterup/counterup.min.js"></script>
+  <script src="~/Content/lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="~/Content/lib/isotope/isotope.pkgd.min.js"></script>
+  <script src="~/Content/lib/lightbox/js/lightbox.min.js"></script>
+  <script src="~/Content/lib/touchSwipe/jquery.touchSwipe.min.js"></script>
+  <!-- Contact Form JavaScript File -->
+  
+    <script src="~/Content/js/contactform.js"></script>
+  <!-- Template Main Javascript File -->
+  <script src="~/Content/js/main.js"></script>
+   
+
+    
+</body>
+</html>

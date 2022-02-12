@@ -1,0 +1,98 @@
+﻿@{
+    ViewBag.Title = "Booking";
+    Layout = "~/Views/Shared/ReceptionCommon.cshtml";
+}
+
+@using MainProject.Models
+@using System.Data
+@model DataTable
+@{
+    int x = ViewBag.msg;
+    DBManager Dbm = new DBManager();
+    string cmd = "select *from GuestDetail where Guest_ID='" + x + "'";
+    DataTable dt = Dbm.ExecuteSelect(cmd);
+    foreach(DataRow dr in dt.Rows)
+    {
+        
+<link href="~/Content/css/style.css" rel="stylesheet" />
+<div class="col-sm-12">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-6">
+            <section id="contact" class="section-bg wow fadeInUp">
+                <div class="container">
+                    <div class="section-header">
+                        <h3>Room Detail</h3>
+          <script>
+              $(document).ready(function () {
+                  $("#no_room").change(function () {
+                      total = $("#no_room").val() * 999 * $("#day").val();
+                      $("#total").val(total);
+                      $("#adv").keyup(function () {
+                          $("#Due").val(total - $("#adv").val());
+                          if ($("#adv").val() > total) {
+                              $(".validation").html("<span style='color:red'>Advance Amount should be less or equal from Total Amount</style>");
+                              //alert("hello");
+                          }
+                          else{
+                              $(".validation").html("<span style='color:red'></style>");
+                              }
+                      });
+                  });
+              });
+          </script>
+                    </div>
+                    <div class="form" id="enq">
+                        @using(Html.BeginForm("Booking","Reception",new{role="form", @class="contactForm"}))
+                        {
+                            <span>Coustomer Name: <b>@dr[1]</b></span>
+                            <input type="hidden" value="@dr[0]"  name="id" />
+                            <input type="hidden" value="@dr[1]"  name="name" />
+                            <input type="hidden" value="@dr[2]"  name="email" />
+                            <input type="hidden" value="@dr[3]"  name="number" />
+                            <input type="hidden" value="@ViewBag.Day" id="day"  name="number" />
+                            <div class="form-group">
+                                <select class="form-control" name="no_room" id="no_room">
+                                    <option value="">--Select Number of Room--</option>
+                                    @for(int i=1;i<=10;i++)
+                                    {
+                                        <option>@i</option>
+                                    }
+                                </select>
+                                
+                            </div>
+                            <div class="form-group">
+                                <input type="number" placeholder="Enter Advance Payment" id="adv" name="adv" class="form-control"/>
+
+                                <p class="validation"></p>
+                            </div>
+                            <div class="form-group">
+                                <input type="number" readonly="readonly" placeholder="Due Payment" id="Due" name="Due" class="form-control"/>
+
+                                
+                            </div>
+                            <div class="form-group">
+                                <input type="number" readonly="readonly" placeholder="Total Amount" id="total" name="total" class="form-control"/>
+
+                               
+                            </div>
+                            <div class="text-center"><input type="submit" value="Submit"></div>
+                         }
+        @{
+           
+            if(@ViewBag.res!=null){
+                <span style="color:red;">@ViewBag.res</span>
+            }
+        }
+        </div>
+
+      </div>
+    </section>
+        </div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-2"></div>
+    </div>
+</div>
+    }
+    
+}

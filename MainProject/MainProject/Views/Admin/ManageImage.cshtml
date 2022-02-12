@@ -1,0 +1,182 @@
+﻿@{
+    ViewBag.Title = "ManageImage";
+    Layout = "~/Views/Shared/AdminCommon.cshtml";
+}
+
+@using MainProject.Models
+@using System.Data
+
+<link href="~/Content/css/style.css" rel="stylesheet" />
+<script>
+    $("body").on("click", "#btnUpload", function () {
+        var allowedFiles = [".jpg", ".jpeg", ".png"];
+        var fileUpload = $("#fileUpload");
+        var txtbx = $("#room").val().trim();
+        var lblError = $("#lblError");
+        $("#lblError").html("");
+        $(".fileUpload").css("border-color", "#F0F0F0");
+        var file_size = $('#fileUpload')[0].files[0].size;
+        var regex = new RegExp("([a-zA-Z0-9\s_\\.\-:])+(" + allowedFiles.join('|') + ")$");
+        if (!regex.test(fileUpload.val().toLowerCase())) {
+            lblError.html("Please upload files having extensions: <b>" + allowedFiles.join(', ') + "</b> only.");
+           // alert(txtbx)
+            return false;
+        }
+        else if (txtbx == "") {
+            lblError.html("Please Enter Room TItle.");
+            return false;
+        }
+        else if (file_size > 512000) {
+            $("#lblError").html("File size is greater than .5MB");
+            $(".fileUpload").css("border-color", "#FF0000");
+
+            return false;
+        }
+
+       
+
+        lblError.html('');
+        return true;
+
+
+        
+        
+        return true;
+    });
+</script>
+<style>
+    #portfolio .portfolio-item figure .link-preview,
+#portfolio .portfolio-item figure .link-details {
+  position: absolute;
+  display: inline-block;
+  opacity: 0;
+  line-height: 1;
+  text-align: center;
+  width: 36px;
+  height: 36px;
+  background: #fff;
+  border-radius: 50%;
+  transition: 0.2s linear;
+}
+
+#portfolio .portfolio-item figure .link-preview i,
+#portfolio .portfolio-item figure .link-details i {
+  padding-top: 6px;
+  font-size: 22px;
+  color: #333;
+}
+
+#portfolio .portfolio-item figure .link-preview:hover,
+#portfolio .portfolio-item figure .link-details:hover {
+  background: #18d26e;
+}
+
+#portfolio .portfolio-item figure .link-preview:hover i,
+#portfolio .portfolio-item figure .link-details:hover i {
+  color: #fff;
+}
+
+#portfolio .portfolio-item figure .link-preview {
+  left: calc(50% - 38px);
+  top: calc(50% - 18px);
+}
+
+#portfolio .portfolio-item figure .link-details {
+  right: calc(50% - 38px);
+  top: calc(50% - 18px);
+}
+
+#portfolio .portfolio-item figure .link-preview {
+  opacity: 1;
+  left: calc(50% - 44px);
+}
+
+#portfolio .portfolio-item figure .link-details {
+  opacity: 1;
+  right: calc(50% - 44px);
+}
+    
+</style>
+<div class="col-sm-12">
+    <div class="row">
+        <div class="col-sm-4">
+            <section id="portfolio"  class="section-bg" >
+                <div class="container">
+                    <header class="section-header">
+                        <h3 class="section-title">Upload Hotel Images</h3>
+                    </header>
+                    <div class="row">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-10">
+                        @using (Html.BeginForm("ManageImage", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                             
+                               
+                            @Html.TextBox("titlee",null,new{placeholder="Enter Title", @class="form-control"})
+                               
+                                <span id="lblError1" style="color: red;"></span>
+                                <br />
+                        @*     @Html.TextBox("link",null,new{placeholder="Enter Video Link", @class="form-control"})*@
+                               <input id="fileUpload" class="form-control" name="file" type="file" />
+                                
+                                <span id="lblError" style="color: red;"></span>
+                                <br />
+                                <input type="submit" id="btnUpload" value="Upload" />
+                        }
+                        @if(ViewBag.msg!=null)
+                        {
+                            <span style="color:red;">@ViewBag.msg</span>
+                        }
+                        @if(TempData["msg"]!=null)
+                        {
+                            <span style="color:red;">@TempData["msg"]</span>
+                        }
+                        </div>
+                    <div class="col-sm-1"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="col-sm-8">
+            <section id="portfolio"  class="section-bg" >
+      <div class="container">
+
+        <header class="section-header">
+          <h3 class="section-title">Current Room Images</h3>
+        </header>
+
+        <div class="row portfolio-container">
+            @{
+                DBManager Dbm = new DBManager();
+                string cmd = "select *from ManageGallery where gal_type='true' order by Gal_ID desc ";
+                DataTable dt = Dbm.ExecuteSelect(cmd);
+                if(dt.Rows.Count==0){
+                    <span style="color:red">No Images are Uploaded</span>
+            }
+                foreach(DataRow dr in dt.Rows){
+                    <div class="col-lg-4 col-md-6 portfolio-item filter-app wow fadeInUp">
+            <div class="portfolio-wrap">
+              <figure>
+                <img src="~/Content/Gallery/@dr[2]" class="img-fluid" alt="">
+                <a href="~/Content/Gallery/@dr[2]" data-lightbox="portfolio" class="link-preview" title="Preview"><i class="ion ion-eye"></i></a>
+                <a href="DeleteVideo?id=@dr[0]" class="link-details" title="Delete"><i class="fas fa-trash"></i></a>
+              </figure>
+
+              <div class="portfolio-info">
+                <h4><a href="#">@dr[1]</a></h4> 
+              </div>
+            </div>
+          </div>
+                }
+            }
+         
+
+         
+
+        </div>
+
+      </div>
+    </section>
+        </div>
+    </div>
+</div>

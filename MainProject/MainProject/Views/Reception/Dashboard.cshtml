@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/ReceptionCommon.cshtml";
+}
+<style>
+    .dash {
+        min-height: 200px;
+        background: rgba(128,0,128,.5);
+        box-shadow:0px 0px 1px purple;
+        color:#fff;
+        font-size:25px;
+        padding:5%;
+        margin-top:5%;
+        padding-top:25%;
+        cursor:pointer;
+    }
+    
+</style>
+<br /><br />
+<div class="col-sm-12">
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10 text-center">
+                    <div class="row">
+                        <div class="col-sm-4">
+                           <a href="/Reception/NewGuest"> <div class="col-sm-12 dash hvr-grow"><i class="fa fa-user-plus"></i><br />Add New Guest</div></a>
+                        </div>
+                        <div class="col-sm-4">
+                            <a href="/Reception/GenerateBill"><div class="col-sm-12 dash hvr-grow"><i class="fa fa-bars"></i><br />Generate Bill</div></a>
+                        </div>
+                        <div class="col-sm-4">
+                            <a href="/Reception/OnlineRequest"><div class="col-sm-12 dash hvr-grow"><i class="fa fa-globe"></i><br />Online Request Details</div></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+</div>
+
+<div class="col-sm-12">
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10 text-center">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <a href="/Reception/GuestDetail"><div class="col-sm-12 dash hvr-grow">
+                               <i class="fa fa-info "></i><br />Guest Details
+                            </div></a>
+                        </div>
+                        <div class="col-sm-4">
+                             <a href="/Reception/Checkout"><div class="col-sm-12 dash hvr-grow"><i class="fa fa-money-bill-alt"></i><br />Check-Out</div></a>
+                        </div>
+                        <div class="col-sm-4">
+                             <a href="/Reception/logout"><div class="col-sm-12 dash hvr-grow"><i class="fas fa-sign-out-alt"></i><br />Logout</div></a>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+</div>
+
